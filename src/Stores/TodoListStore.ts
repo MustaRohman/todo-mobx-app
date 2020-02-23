@@ -11,4 +11,10 @@ export class TodoListStore {
     constructor(store: RootStore) {
         this.store = store;
     }
+
+    createTodoList(name: string, description: string = '') {
+        const todoList = new TodoList(this, name, description);
+        this.todoLists.push(todoList);
+        return todoList;
+    }
 }
