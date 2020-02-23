@@ -1,7 +1,9 @@
+import { observable } from 'mobx';
+
 export class Todo {
     id: number = Math.random()
-    title: string = ""
-    completed: boolean = false
+    @observable title: string = ""
+    @observable completed: boolean = false
 
     constructor(title: string) {
         this.title = title;
