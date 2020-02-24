@@ -30,17 +30,11 @@ const List = observer((props: Props) => {
             <div>
                 <form onSubmit={handleSubmit}>
                     <input name="title" value={newTodoTitle} type="text" onChange={handleNewTodoChange}></input>
-                    {/* <button
-                        // onClick={}
-                    >
-                        + Add Todo
-                    </button> */}
                     <input type="submit" value="+ Add Todo"></input>
                 </form>
-                {/* Map todos, section by complete and incomplete */}
                 <h2>Incomplete</h2>
                 {
-                    todoList?.todos.filter(item => (!item.completed)).map(todo => {
+                    todoList?.incompleteTodos.map(todo => {
                         return (
                             <TodoItem key={todo.id} todo={todo} />
                         );
@@ -49,7 +43,7 @@ const List = observer((props: Props) => {
 
                 <h2>Complete</h2>
                 {
-                    todoList?.todos.filter(item => (item.completed)).map(todo => {
+                    todoList?.completedTodos.map(todo => {
                         return (
                             <TodoItem key={todo.id} todo={todo} />
                         );
