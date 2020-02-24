@@ -12,12 +12,14 @@ const Lists = (props: Props) => {
             {
                 props.todoLists.map((todoList, index) => {
                     return (
-                        <Link to={"/list/" + todoList.id}>
                             <div 
                                 key={todoList.id} 
                                 style={style}
                             >
-                                <h3>{todoList.name + ' (' + todoList.todos.length + ')'}</h3>
+                                <Link to={"/list/" + todoList.id}>
+                                    <h3>{todoList.name + ' (' + todoList.todos.length + ')'}</h3>
+                                </Link>
+
                                 <div >
                                     {
                                         todoList.description && 
@@ -25,7 +27,6 @@ const Lists = (props: Props) => {
                                     }
                                 </div>
                             </div>
-                        </Link>
                     )
                 })
             }

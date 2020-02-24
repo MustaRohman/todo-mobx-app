@@ -8,7 +8,7 @@ import List from './Containers/List';
 
 const rootStore = new RootStore();
 
-const RootStoreContext = React.createContext(rootStore);
+export const RootStoreContext = React.createContext(rootStore);
 
 function App() {
   return (

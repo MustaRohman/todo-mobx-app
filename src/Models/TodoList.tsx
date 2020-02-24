@@ -17,8 +17,13 @@ export class TodoList {
         this.description = description;
     }
 
-    @computed get todo() {
-        return this.todos;
+    createTodo(title: string) {
+        const todo = new Todo(title);
+        this.todos.push(todo);
+    }
+
+    @computed get completedTodos() {
+        return this.todos.filter(todo => (todo.completed))
     }
 
     @computed get completedTodoCount() {
