@@ -1,7 +1,6 @@
 import { observable, computed } from "mobx";
 import { TodoList } from "../Models/TodoList";
 import { RootStore } from "./RootStore";
-import { computedFn } from 'mobx-utils';
 
 export class TodoListStore {
     @observable todoLists: TodoList[] = []
@@ -19,7 +18,7 @@ export class TodoListStore {
         return todoList;
     }
 
-    getByTodoListId = computedFn(function(id: string) {
+    getByTodoListId(id: string) {
         return this.todoLists.find(todoList => {
             return todoList.id === id;
         })

@@ -2,12 +2,14 @@ import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router';
 
 import {RootStoreContext} from '../../App';
+import {observer} from "mobx-react"
+import TodoItem from '../../Components/TodoItem';
 
 interface Props {
 
 }
 
-const List = (props: Props) => {
+const List = observer((props: Props) => {
     const { listId = '' } = useParams();
     const store = useContext(RootStoreContext).todoListStore;
     const todoList = store.getByTodoListId(listId);
@@ -36,16 +38,27 @@ const List = (props: Props) => {
                     <input type="submit" value="+ Add Todo"></input>
                 </form>
                 {/* Map todos, section by complete and incomplete */}
+                <h2>Incomplete</h2>
                 {
-                    todoList?.completedTodos.map(todo => {
+                    todoList?.todos.filter(item => (!item.completed)).map(todo => {
                         return (
-                            <p>{todo.title}</p>
+                            <TodoItem key={todo.id} todo={todo} />
+                        );
+                    })
+                }
+
+                <h2>Complete</h2>
+                {
+                    todoList?.todos.filter(item => (item.completed)).map(todo => {
+                        return (
+                            <TodoItem key={todo.id} todo={todo} />
                         );
                     })
                 }
             </div>
         </>
     )
-}
+})
+
 
 export default List;
