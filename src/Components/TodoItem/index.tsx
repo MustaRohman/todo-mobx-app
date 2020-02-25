@@ -7,7 +7,6 @@ interface Props {
     todo: Todo
 }
 
-
 const handleCheckbox = action((todo: Todo) => {
     todo.completed = !todo.completed
 })
