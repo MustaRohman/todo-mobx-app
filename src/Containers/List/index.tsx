@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import {RootStoreContext} from '../../App';
 import {observer} from "mobx-react"
 import TodoItem from '../../Components/TodoItem';
+import { action } from 'mobx';
 
 interface Props {
 
@@ -15,14 +16,14 @@ const List = observer((props: Props) => {
     const todoList = store.getByTodoListId(listId);
     const [newTodoTitle, setNewTodoTitle] = useState('');
 
-    const handleNewTodoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleNewTodoChange = action((event: React.ChangeEvent<HTMLInputElement>) => {
         setNewTodoTitle(event.target.value)
-    }
+    })
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = action((event: React.FormEvent<HTMLFormElement>) => {
         todoList?.createTodo(newTodoTitle);
         event.preventDefault();
-    }
+    })
 
     return (
         <>
