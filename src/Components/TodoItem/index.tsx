@@ -1,18 +1,20 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Todo } from '../../Models/Todo';
+import { action } from 'mobx';
 
 interface Props {
     todo: Todo
 }
 
-const handleCheckbox = (todo: Todo) => {
-    todo.completed = !todo.completed
-}
 
-const handleTextInput = (event: React.ChangeEvent<HTMLInputElement>, todo: Todo) => {
+const handleCheckbox = action((todo: Todo) => {
+    todo.completed = !todo.completed
+})
+
+const handleTextInput = action((event: React.ChangeEvent<HTMLInputElement>, todo: Todo) => {
     todo.title = event.target.value;
-}
+})
 
 const TodoItem = observer((props: Props) => {
     const { todo } = props;
